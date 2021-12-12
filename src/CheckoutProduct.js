@@ -12,8 +12,8 @@ function CheckoutProduct({id, title, price, image }) {
                 <bold>₹</bold>
                 <strong>{price}</strong>
                 </p>
+                <button>Remove From Cart</button>
             </div>
-            <button>Remove From Cart</button>
         </div>
     )
 }
