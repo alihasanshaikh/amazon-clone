@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link , useHistory } from 'react-router-dom';
 import { auth } from './firebase';
 import './Login.css';
 
@@ -10,7 +10,16 @@ function Login() {
 
     const signIn = e => {
         e.preventDefault();
-        //firebase
+        
+        auth
+            .signInWithEmailAndPassword(email,password)
+            .then((auth)  => {
+                //it successfully user sign in with Email and Pwd
+              if(auth){
+                  history.push('/')
+              }
+            })
+            .catch(error => alert(error.message))
     }
 
     const register  = e => {
@@ -20,7 +29,9 @@ function Login() {
             .createUserWithEmailAndPassword(email, password)
             .then((auth)  => {
                 //it successfully created a new user with Email and Pwd
-                console.log(auth);
+              if(auth){
+                  history.push('/')
+              }
             })
             .catch(error => alert(error.message))
     }
@@ -47,5 +58,3 @@ function Login() {
         </div>
     )
 }
-
-export default Login
